@@ -2,23 +2,16 @@ import gql from 'graphql-tag'
 
 export const ALL_USERS_QUERY = gql`
   query AllUsersQuery {
-    allUsers {
-      id
-      username
-      email
+    ideas(page:1,newest:true) {
+      id created updated idea
     }
   }
 `
 
 export const ALL_POSTS_QUERY = gql`
   query AllPostsQuery {
-    allPosts {
-      id
-      title
-      slug
-      user {
-        username
-      }
+    ideas(page:1,newest:true) {
+      id created updated idea
     }
   }
 `

@@ -13,7 +13,7 @@ Vue.config.productionTip = false
 
 const httpLink = new HttpLink({
   // You should use an absolute URL here
-  uri: 'http://localhost:3333/graphql'
+  uri: 'http://localhost:8080/graphql'
 })
 
 const authLink = setContext((_, { headers }) => {

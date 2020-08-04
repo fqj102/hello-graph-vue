@@ -8,8 +8,8 @@
           v-for="post in allPosts"
           :key="post.id"
           class="title is-5">
-          <router-link :to="post.slug">
-            {{ post.title }}
+          <router-link :to="post.idea">
+            {{ post.created }}
           </router-link>
         </h3>
       </div>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { ALL_POSTS_QUERY } from '@/graphql'
+import { ALL_USERS_QUERY } from '@/graphql'
 
 export default {
   name: 'Home',
@@ -27,11 +27,18 @@ export default {
       allPosts: []
     }
   },
-  apollo: {
-    // fetch all posts
-    allPosts: {
-      query: ALL_POSTS_QUERY
-    }
+  async mounted () {
+    this.loading = true
+    const users = await this.$apollo.query({ query: ALL_USERS_QUERY })
+    this.allPosts = users.data.ideas
+    console.log(this.allPosts)
+    this.loading = false
   }
+  // apollo: {
+  //   // fetch all posts
+  //   allPosts: {
+  //     query: ALL_POSTS_QUERY
+  //   }
+  // }
 }
 </script>
